@@ -1,11 +1,11 @@
-import './App.css';
+import {BrowserRouter} from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      Starting to create! 
-    </div>
-  );
+    <BrowserRouter>
+      Let's start!
+    </BrowserRouter>
+  )
 }
 
 export default App;
