@@ -21,3 +21,5 @@ For convenience, use the better comments plugin
 Script for running server
 
 TODO: add basket and rating in backend
+
+starting to create frontend )
