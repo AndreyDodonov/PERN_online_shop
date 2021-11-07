@@ -6,12 +6,10 @@ import { SHOP_ROUTE } from "../utils/constants";
 
 // * work only with react-router-dom 5.2.0
 
-const AppRouter = () => {
-    // моковая заглушка для проверки авторизации (this is for test) 
-    // const isAuth = false
+const AppRouter = () => {    
 
     const {user} = useContext(Context)
-    console.log(user);
+    // console.log(user);   
 
     return (          
         <Switch>

@@ -1,10 +1,15 @@
+import Container from 'react-bootstrap/esm/Container';
 import {BrowserRouter} from 'react-router-dom';
 import AppRouter from './components/AppRouter';
+import NavBar from './components/NavBar';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AppRouter/>
+      <Container>
+        <NavBar/>
+        <AppRouter/>
+      </Container>
     </BrowserRouter>
   )
 }
