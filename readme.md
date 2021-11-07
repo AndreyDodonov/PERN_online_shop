@@ -1,5 +1,7 @@
 ### test app )
 
+Project page on notion:  [here](https://www.notion.so/Online-shop-817afb47ff7f44c0aead286f1c7d3ee2)
+
 PERN stack 
 
 :rocket: - dev commit
