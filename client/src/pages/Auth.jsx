@@ -1,9 +1,14 @@
 import React from "react";
 import { Card, Container, Form, Button, Row } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import { REG_ROUTE } from "../utils/constants";
+import { NavLink, useLocation } from "react-router-dom";
+import { LOGIN_ROUTE, REG_ROUTE } from "../utils/constants";
 
 const Auth = () => {
+
+    const location = useLocation();
+    const isLogin = location.pathname === LOGIN_ROUTE
+    console.log(location)
+
     return (
         <Container
             className="
@@ -21,7 +26,7 @@ const Auth = () => {
                 <h2
                     className="m-auto"
                 >
-                    Authorization
+                    {isLogin ? 'Authorization' : 'Registartion'} 
                 </h2>
                 <Form
                     className="d-flex flex-column"
@@ -37,14 +42,26 @@ const Auth = () => {
                     <Row
                         className="d-flex justify-content-between pl-3 pr-3"
                     >
+                        {isLogin ? 
                         <div>
-                            don't have an account? <NavLink to={REG_ROUTE}>Registration</NavLink>
+                        don't have an account? <NavLink to={REG_ROUTE}>Registration</NavLink>
                         </div>
+                        :
+                        <div>
+                        Do you have an account? <NavLink to={LOGIN_ROUTE}>Login</NavLink>
+                        </div>
+                    }
+                        
                         <Button
                             variant={"outline-primary"}                            
                             className="mt-2 "
                         >
-                            Enter
+                            {
+                                isLogin ?
+                                'Enter'
+                                :
+                                'Registration'
+                            }
                         </Button>
                     </Row>
 
