@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "eslint": "^8.2.0",
     "nodemon": "^2.0.12"
   }
 }
