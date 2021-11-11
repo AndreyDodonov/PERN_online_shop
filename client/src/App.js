@@ -1,9 +1,11 @@
+import { observer } from 'mobx-react-lite';
 import Container from 'react-bootstrap/esm/Container';
 import {BrowserRouter} from 'react-router-dom';
 import AppRouter from './components/AppRouter';
 import NavBar from './components/NavBar';
 
-const App = () => {
+const App = observer(() => {
+
   return (
     <BrowserRouter>
       <Container>
@@ -12,6 +14,7 @@ const App = () => {
       </Container>
     </BrowserRouter>
   )
-}
+});
 
 export default App;
+

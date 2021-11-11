@@ -1,10 +1,20 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import TypeBar from "../components/TypeBar";
 
 const Shop = () => {
+    
     return (
-        <div>
-            Shop page
-        </div>
+        <Container>
+            <Row className="mt-2">
+                <Col md={3}>
+                    <TypeBar />
+                </Col>
+                <Col md={9}>
+
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
