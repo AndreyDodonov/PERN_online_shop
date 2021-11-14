@@ -1,10 +1,19 @@
 import React from "react";
+import { Container, Button } from "react-bootstrap";
 
 const Admin = () => {
     return (
-        <div>
-            Admin page
-        </div>
+        <Container>
+            <Button>
+                Create device
+            </Button>
+            <Button>
+                Create brand
+            </Button>
+            <Button>    
+                Create type
+            </Button>
+        </Container>
     );
 };
 

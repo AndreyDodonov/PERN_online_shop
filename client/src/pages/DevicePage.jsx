@@ -55,7 +55,7 @@ const DevicePage = () => {
                 {description.map((info, idx) =>
                     <Row
                         key={info.id}
-                        style={{ background: idx % 2 ? 'white' : 'gray',  padding: 10 }}
+                        style={{ background: idx % 2 ? 'white' : 'gray', padding: 10 }}
                     >
                         {info.title} : {info.description}
                     </Row>
