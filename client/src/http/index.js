@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL
