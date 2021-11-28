@@ -1,10 +1,11 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
 import TypeBar from "../components/TypeBar";
 
-const Shop = () => {
+const Shop = observer(() => {
     
     return (
         <Container>
@@ -19,6 +20,6 @@ const Shop = () => {
             </Row>
         </Container>
     );
-};
+});
 
 export default Shop;

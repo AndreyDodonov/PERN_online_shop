@@ -12,7 +12,13 @@ const NavBar = observer(() => {
 
     const { user } = useContext(Context)
     const history = useHistory();
-    console.log(user._isAuth); 
+    console.log(user._isAuth);
+
+    const logoutHandler = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+        history.push(SHOP_ROUTE);
+    }
 
 
     return (
@@ -27,7 +33,7 @@ const NavBar = observer(() => {
                         >Admin Panel</Button>
                         <Button
                             className="mx-2"
-                            onClick={() => history.push(LOGIN_ROUTE)}
+                            onClick={() => logoutHandler()}
                         >Logout
                         </Button>
                     </Nav>
@@ -38,7 +44,7 @@ const NavBar = observer(() => {
                         <Nav.Link href="#deliverInfo">Deliver</Nav.Link>
                         <Nav.Link href="#contacts">Contacts</Nav.Link>
                         <Button
-                            onClick={() => user.setIsAuth(true)}
+                            onClick={() => history.push(LOGIN_ROUTE)}
                         >Authorization</Button>
                     </Nav>
                 }
