@@ -1,11 +1,20 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Context } from "..";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
 import TypeBar from "../components/TypeBar";
+import { getTypes } from "../http/deviceAPI";
 
 const Shop = observer(() => {
+
+    const {device} = useContext(Context)
+    
+    useEffect (() => {
+        getTypes().then(data => device.setTypes(data))
+    }, [])
+   
     
     return (
         <Container>

@@ -11,7 +11,7 @@ export const createType = async (type) => {
 
 export const getTypes = async () => {
     try {
-        const { data } = await $host.post('api/type');       
+        const { data } = await $host.get('api/type');       
         return data
     } catch (e) { alert(e.response.data.message); }
 
