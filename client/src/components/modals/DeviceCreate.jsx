@@ -1,10 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Modal, Button, Form, Dropdown, FormControl, Col, Row } from "react-bootstrap";
 import { Context } from "../../index";
+import { getTypes, fetchBrands } from "../../http/deviceAPI";
+import { observer } from "mobx-react-lite";
 
-const DeviceCreate = ({ show, onHide }) => {
+const DeviceCreate = observer(({ show, onHide }) => {
 
-    const { device } = useContext(Context)
+    useEffect(() => {
+        getTypes().then(data => device.setTypes(data));
+        fetchBrands().then(data => device.setBrands(data));
+    }, [])
+
+    const { device } = useContext(Context);
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState(0);
+    const [file, setFile] = useState(null);
+    // const [brand, setBrand] = useState(null);
+    // const [type, setType] = useState(null);
     const [info, setInfo] = useState([])
 
     const addInfo = () => {
@@ -13,6 +25,11 @@ const DeviceCreate = ({ show, onHide }) => {
 
     const removeInfo = (number) => {
         setInfo(info.filter(i => i.number !== number))
+    }
+
+    const selectFile = (e) => {
+        // console.log(e.target.files);
+        setFile(e.target.files[0]);
     }
 
     return (
@@ -32,19 +49,29 @@ const DeviceCreate = ({ show, onHide }) => {
                 <Form>
 
                     <Dropdown>
-                        <Dropdown.Toggle> Choose type </Dropdown.Toggle>
+                        <Dropdown.Toggle>{device.selectedType.name || "Choose type"} </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {device._types.map(type =>
-                                <Dropdown.Item key={type.id}> {type.name} </Dropdown.Item>
+                                <Dropdown.Item
+                                    key={type.id}
+                                    onClick={() => device.setSelectedType(type)}
+                                >
+                                    {type.name}
+                                </Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
 
                     <Dropdown className="mt-3">
-                        <Dropdown.Toggle> Choose brand </Dropdown.Toggle>
+                        <Dropdown.Toggle> {device.selectedBrand.name || "Choose brand"} </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {device._brands.map(brand =>
-                                <Dropdown.Item key={brand.id}> {brand.name} </Dropdown.Item>
+                                <Dropdown.Item
+                                    key={brand.id}
+                                    onClick={() => device.setSelectedBrand(brand)}
+                                >
+                                    {brand.name}
+                                </Dropdown.Item>
                             )}
                         </Dropdown.Menu>
                     </Dropdown>
@@ -52,18 +79,23 @@ const DeviceCreate = ({ show, onHide }) => {
                     <FormControl
                         className="mt-3"
                         placeholder="Input device name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                         type="string"
                     />
 
                     <FormControl
                         className="mt-3"
                         placeholder="Input device price"
+                        value={price}
+                        onChange={e => setPrice(Number(e.target.value))}
                         type="number"
                     />
 
                     <FormControl
                         className="mt-3"
                         type="file"
+                        onChange={selectFile}
                     />
 
                     <hr />
@@ -104,6 +136,6 @@ const DeviceCreate = ({ show, onHide }) => {
             </Modal.Footer>
         </Modal>
     )
-}
+});
 
 export default DeviceCreate;

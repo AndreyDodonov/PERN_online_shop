@@ -5,14 +5,16 @@ import { Context } from "..";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
 import TypeBar from "../components/TypeBar";
-import { getTypes } from "../http/deviceAPI";
+import { getTypes, fetchBrands } from "../http/deviceAPI";
 
 const Shop = observer(() => {
 
     const {device} = useContext(Context)
     
     useEffect (() => {
-        getTypes().then(data => device.setTypes(data))
+        getTypes().then(data => device.setTypes(data));
+        fetchBrands().then(data => device.setBrands(data));
+        
     }, [])
    
     
