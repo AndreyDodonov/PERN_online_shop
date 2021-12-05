@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Context } from "..";
 import BrandBar from "../components/BrandBar";
 import DeviceList from "../components/DeviceList";
+import Pages from "../components/Pages";
 import TypeBar from "../components/TypeBar";
 import { getTypes, fetchBrands, fetchDevices } from "../http/deviceAPI";
 
@@ -14,7 +15,7 @@ const Shop = observer(() => {
     useEffect (() => {
         getTypes().then(data => device.setTypes(data));
         fetchBrands().then(data => device.setBrands(data));
-        fetchDevices(null, null, 1, 10).then(data => {
+        fetchDevices(null, null, 1, 12).then(data => {
             device.setDevices(data.rows)
             // device.setTotalCount(data.count)
         })
@@ -30,6 +31,7 @@ const Shop = observer(() => {
                 <Col md={9}>
                     <BrandBar/>
                     <DeviceList/>
+                    <Pages/>
                 </Col>
             </Row>
         </Container>

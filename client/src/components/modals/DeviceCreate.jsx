@@ -46,7 +46,8 @@ const DeviceCreate = observer(({ show, onHide }) => {
         createDevice(formData)
         .then(data => onHide())
         .then(data => console.log('succes!'))
-        .catch(err => alert('error: ' + err)) ;        
+        .catch(err => console.log('error: ' + err)) ;
+        // ! error 404 not found but device is being created       
     }
 
     return (
