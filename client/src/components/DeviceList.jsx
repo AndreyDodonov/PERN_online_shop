@@ -9,13 +9,12 @@ const DeviceList = observer(() => {
     const { device } = useContext(Context);
 
     return (
-        <Row className="d-flex">
+        <Row className="d-flex">            
             {device._devices.map(device =>
                 <DeviceItem
                     key={device.id}
                     device={device}
                 />
-
             )}
         </Row>
     )
