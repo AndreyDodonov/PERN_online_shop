@@ -10,18 +10,28 @@ import { getTypes, fetchBrands, fetchDevices } from "../http/deviceAPI";
 
 const Shop = observer(() => {
 
-    const {device} = useContext(Context)
-    
-    useEffect (() => {
+    const { device } = useContext(Context)
+
+    useEffect(() => {
         getTypes().then(data => device.setTypes(data));
         fetchBrands().then(data => device.setBrands(data));
-        fetchDevices(null, null, 1, 12).then(data => {
+        fetchDevices(null, null, 1, 2).then(data => {
             device.setDevices(data.rows)
-            // device.setTotalCount(data.count)
+            device.setTotalCount(data.count)
         })
+        .catch(error => console.log('error: ' + error));
     }, [])
-   
-    
+
+    useEffect(() => {
+        fetchDevices(device.selectedType.id, device.selectedBrand.id, device.page, 2)
+            .then(data => {
+                device.setDevices(data.rows)
+                device.setTotalCount(data.count)
+            })
+            .catch(error => console.log('error: ' + error));
+    }, [device.page, device.selectedType, device.selectedBrand])
+
+
     return (
         <Container>
             <Row className="mt-2">
@@ -29,9 +39,9 @@ const Shop = observer(() => {
                     <TypeBar />
                 </Col>
                 <Col md={9}>
-                    <BrandBar/>
-                    <DeviceList/>
-                    <Pages/>
+                    <BrandBar />
+                    <DeviceList />
+                    <Pages />
                 </Col>
             </Row>
         </Container>

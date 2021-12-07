@@ -2,9 +2,11 @@ import { $authHost, $host } from "./index";
 import jwt_decode from "jwt-decode";
 
 export const registration = async (email, password) => {
+    // ! Admin role only for dev. DELETE IT IN RELISE!!
     try {
-        const { data } = await $host.post('api/user/registration', { email, password })
+        const { data } = await $host.post('api/user/registration', { email, password, role: 'Admin' })
         localStorage.setItem('token', data.token)
+        console.log('\x1b[36m%s\x1b[0m', "!Delete admin role!");
         return jwt_decode(data.token)
     } catch (e) { }
 
